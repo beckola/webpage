@@ -258,12 +258,12 @@
   </header>
 
   <nav>
-    <a href="#" class="active" onclick="show(event,'about', this)">About</a>
-    <a href="#" onclick="show(event,'research', this)">Research</a>
-    <a href="#" onclick="show(event,'writing', this)">Writing</a>
-    <a href="#" onclick="show(event,'projects', this)">Projects</a>
-    <a href="#" onclick="show(event,'links', this)">Links</a>
-    <a href="#" onclick="show(event,'contact', this)">Contact</a>
+    <a href="#" data-section="about" class="active">About</a>
+    <a href="#" data-section="research">Research</a>
+    <a href="#" data-section="writing">Writing</a>
+    <a href="#" data-section="projects">Projects</a>
+    <a href="#" data-section="links">Links</a>
+    <a href="#" data-section="contact">Contact</a>
   </nav>
 
   <!-- ── ABOUT ── -->
@@ -425,7 +425,7 @@
       <div>309 Regent Street</div>
       <div>London W1B 2HW</div>
       <br>
-      <div><a href="/cdn-cgi/l/email-protection#abc185c9cec8c0ebdcced8dfc6c2c5d8dfced985cac885dec0"><span class="__cf_email__" data-cfemail="2b4105494e48406b5c4e585f464245585f4e59054a48055e40">[email&#160;protected]</span></a></div>
+      <div><a href="mailto:j.beck@westminster.ac.uk">j.beck@westminster.ac.uk</a></div>
       <br>
       <div><a href="#">Curriculum Vitae (PDF)</a></div>
     </div>
@@ -437,11 +437,15 @@
 
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  function show(e, id, link) {
-    e.preventDefault();
-    document.querySelectorAll('section').forEach(s => s.classList.remove('visible'));
-    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-    document.getElementById(id).classList.add('visible');
-    link.classList.add('active');
-  }
+<script>
+  document.querySelectorAll('nav a').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var id = this.getAttribute('data-section');
+      document.querySelectorAll('section').forEach(function(s) { s.classList.remove('visible'); });
+      document.querySelectorAll('nav a').forEach(function(a) { a.classList.remove('active'); });
+      document.getElementById(id).classList.add('visible');
+      this.classList.add('active');
+    });
+  });
+</script>
