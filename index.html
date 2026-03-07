@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JOHN [SURNAME] — ACADEMIC</title>
+<style>
+
+  @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
+
+  :root {
+    --paper: #f5f0e8;
+    --ink: #1a1a18;
+    --mid: #6b6660;
+    --rule: #c8c0b4;
+    --col: 680px;
+    --margin: clamp(1.5rem, 5vw, 4rem);
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-size: 16px;
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  body {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    line-height: 1.7;
+    background: var(--paper);
+    min-height: 100vh;
+    padding: 0 var(--margin);
+  }
+
+  /* ─── LAYOUT ─── */
+
+  .page {
+    max-width: var(--col);
+    margin: 0 auto;
+  }
+
+  /* ─── HEADER ─── */
+
+  header {
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .name {
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+
+  .title-line {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: var(--mid);
+    text-transform: uppercase;
+  }
+
+  /* ─── NAV ─── */
+
+  nav {
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  nav a:hover {
+    color: var(--mid);
+  }
+
+  nav a.active {
+    border-bottom: 1px solid var(--ink);
+  }
+
+  /* ─── SECTIONS ─── */
+
+  section {
+    padding: 3.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    display: none;
+  }
+
+  section.visible {
+    display: block;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 2.2rem;
+  }
+
+  /* ─── PROSE ─── */
+
+  p {
+    font-size: 0.95rem;
+    margin-bottom: 1.4rem;
+    max-width: 60ch;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ─── BOOK / PROJECT ENTRIES ─── */
+
+  .entry {
+    margin-bottom: 2.8rem;
+    padding-bottom: 2.8rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .entry:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .entry-year {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    color: var(--mid);
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+  }
+
+  .entry-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .entry-publisher {
+    font-size: 0.82rem;
+    color: var(--mid);
+    font-style: italic;
+    margin-bottom: 0.9rem;
+  }
+
+  .entry-desc {
+    font-size: 0.88rem;
+    max-width: 58ch;
+    line-height: 1.75;
+  }
+
+  /* ─── ARTICLE LIST ─── */
+
+  .article-list {
+    list-style: none;
+  }
+
+  .article-list li {
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.88rem;
+    display: grid;
+    grid-template-columns: 4ch 1fr;
+    gap: 1.5rem;
+    align-items: baseline;
+  }
+
+  .article-list li:first-child {
+    border-top: 1px solid var(--rule);
+  }
+
+  .article-num {
+    color: var(--mid);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+  }
+
+  .article-text em {
+    font-style: italic;
+  }
+
+  .article-text .journal {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--mid);
+    margin-top: 0.2rem;
+    font-style: italic;
+  }
+
+  /* ─── CONTACT ─── */
+
+  .contact-block {
+    font-size: 0.88rem;
+    line-height: 2.2;
+  }
+
+  .contact-block a {
+    color: var(--ink);
+  }
+
+  .contact-block a:hover {
+    color: var(--mid);
+  }
+
+  /* ─── STATEMENT BLOCK ─── */
+
+  .statement {
+    font-size: 1.05rem;
+    line-height: 2;
+    max-width: 54ch;
+    letter-spacing: 0.01em;
+  }
+
+  /* ─── FOOTER ─── */
+
+  footer {
+    padding: 2rem 0 4rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--rule);
+    text-transform: uppercase;
+  }
+
+  /* ─── PRINT ─── */
+
+  @media print {
+    section { display: block !important; }
+    nav, footer { display: none; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header>
+    <div class="name">John Beck</div>
+    <div class="title-line"> Professor &nbsp;·&nbsp; [University] &nbsp;·&nbsp; Department of [English / Cultural Studies]</div>
+  </header>
+
+  <nav>
+    <a href="#" class="active" onclick="show('about', this)">About</a>
+    <a href="#" onclick="show('research', this)">Research</a>
+    <a href="#" onclick="show('writing', this)">Writing</a>
+    <a href="#" onclick="show('projects', this)">Projects</a>
+    <a href="#" onclick="show('contact', this)">Contact</a>
+  </nav>
+
+  <!-- ── ABOUT ── -->
+  <section id="about" class="visible">
+    <div class="section-label">Statement</div>
+    <p class="statement">
+      I am a scholar of American literature and visual culture, with particular interests in the cultural politics of conservatism, postwar photography, and the aesthetics of Cold War intellectual life.
+    </p>
+    <p class="statement">
+      My work asks how cultural forms — novels, photographs, documentary films, television — participate in the making of political common sense. I am concerned with the institutions, networks, and factions through which culture is produced, and with the categories — tradition, nation, race, gender — through which it is organised.
+    </p>
+    <p class="statement">
+      I am currently completing a book, <em>The Cultural Politics of American Conservatism</em>, under contract with [Press].
+    </p>
+  </section>
+
+  <!-- ── RESEARCH ── -->
+  <section id="research">
+    <div class="section-label">Current Projects</div>
+
+    <div class="entry">
+      <div class="entry-year">In progress</div>
+      <div class="entry-title">The Cultural Politics of American Conservatism</div>
+      <div class="entry-publisher">[Press], forthcoming</div>
+      <div class="entry-desc">
+        A study of how conservative culture is produced through factional negotiation rather than ideological consensus. Chapters examine neoconservative aesthetics, Steve Bannon's documentaries, Regnery Publishing's literary programme, the 1619 Project debates, antifeminist politics in prestige television, J.D. Vance, conservative responses to Black Lives Matter, and tech libertarian secessionism.
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">Research strand</div>
+      <div class="entry-title">Epistemic Warfare and the Culture Wars</div>
+      <div class="entry-publisher">Ongoing research</div>
+      <div class="entry-desc">
+        An investigation of agnotology, disinformation, and the infrastructure of conservative media, drawing on work in science studies, epistemology, and media history. Situates the contemporary culture wars within longer histories of manufactured ignorance and weaponised interdependence.
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">Research strand</div>
+      <div class="entry-title">Photography, Factography, and Cold War Visual Culture</div>
+      <div class="entry-publisher">Ongoing research</div>
+      <div class="entry-desc">
+        Examines postwar American photography — New Topographics, survey traditions, atomic imagery, documentary practice — in relation to Soviet factographic theory and the cultural logic of the Cold War. Connects photography theory (Sekula, Krauss, Grundberg) to broader questions of colonial and state visuality.
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── WRITING ── -->
+  <section id="writing">
+    <div class="section-label">Selected Publications</div>
+    <ul class="article-list">
+
+      <li>
+        <span class="article-num">01</span>
+        <span class="article-text">
+          "[Article title]"
+          <span class="journal">[Journal Name], vol. XX, no. X (202X), pp. XX–XX</span>
+        </span>
+      </li>
+
+      <li>
+        <span class="article-num">02</span>
+        <span class="article-text">
+          "[Article title]"
+          <span class="journal">[Journal Name], vol. XX, no. X (202X), pp. XX–XX</span>
+        </span>
+      </li>
+
+      <li>
+        <span class="article-num">03</span>
+        <span class="article-text">
+          "[Chapter title]," in <em>[Edited Volume Title]</em>, ed. [Editor Name]
+          <span class="journal">[Press], 202X</span>
+        </span>
+      </li>
+
+      <li>
+        <span class="article-num">04</span>
+        <span class="article-text">
+          "[Article title]"
+          <span class="journal">[Journal Name], vol. XX, no. X (20XX), pp. XX–XX</span>
+        </span>
+      </li>
+
+      <li>
+        <span class="article-num">05</span>
+        <span class="article-text">
+          "[Review / Essay title]"
+          <span class="journal">[Publication], 20XX</span>
+        </span>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects">
+    <div class="section-label">Projects</div>
+
+    <div class="entry">
+      <div class="entry-year">[Year – present]</div>
+      <div class="entry-title">[Project Title]</div>
+      <div class="entry-desc">[Brief description of the project.]</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">[Year – Year]</div>
+      <div class="entry-title">[Project Title]</div>
+      <div class="entry-desc">[Brief description of the project.]</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">[Year – Year]</div>
+      <div class="entry-title">[Project Title]</div>
+      <div class="entry-desc">[Brief description of the project.]</div>
+    </div>
+
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <div class="contact-block">
+      <div>John Beck</div>
+      <div>School of Humanities</div>
+      <div>University of Westminster</div>
+      <div>309 Regent Street</div>
+      <div>London W1B 2HW</div>
+      <br>
+      <div><a href="mailto:j.beck@westminster.ac.uk">j.beck@westminster.ac.uk</a></div>
+      <br>
+      <div><a href="#">Curriculum Vitae (PDF)</a></div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; [Year] [Name] &nbsp;—&nbsp; [University]
+  </footer>
+
+</div>
+
+<script>
+  function show(id, link) {
+    event.preventDefault();
+    document.querySelectorAll('section').forEach(s => s.classList.remove('visible'));
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    document.getElementById(id).classList.add('visible');
+    link.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
