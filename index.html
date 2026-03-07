@@ -258,12 +258,12 @@
   </header>
 
   <nav>
-    <a href="#" class="active" onclick="show('about', this)">About</a>
-    <a href="#" onclick="show('research', this)">Research</a>
-    <a href="#" onclick="show('writing', this)">Writing</a>
-    <a href="#" onclick="show('projects', this)">Projects</a>
-    <a href="#" onclick="show('links', this)">Links</a>
-    <a href="#" onclick="show('contact', this)">Contact</a>
+    <a href="#" class="active" onclick="show(event,'about', this)">About</a>
+    <a href="#" onclick="show(event,'research', this)">Research</a>
+    <a href="#" onclick="show(event,'writing', this)">Writing</a>
+    <a href="#" onclick="show(event,'projects', this)">Projects</a>
+    <a href="#" onclick="show(event,'links', this)">Links</a>
+    <a href="#" onclick="show(event,'contact', this)">Contact</a>
   </nav>
 
   <!-- ── ABOUT ── -->
@@ -438,6 +438,10 @@
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  function show(id, link) {
-    event.preventDefault();
-    document.querySelectorAll('section'
+  function show(e, id, link) {
+    e.preventDefault();
+    document.querySelectorAll('section').forEach(s => s.classList.remove('visible'));
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    document.getElementById(id).classList.add('visible');
+    link.classList.add('active');
+  }
